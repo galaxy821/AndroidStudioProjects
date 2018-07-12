@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffFAED7D"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!--하단 창에 있는 메시지-->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="27dp"
+        android:text="NEW 메시지"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        android:textStyle="" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/buttonshape"
+        android:elevation="20dp"
+        android:onClick="ButtonClicked1"
+        android:padding="40dp"
+        android:textSize="30dp"
+        android:text="X"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+
+         />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/backgroundshape"
+        app:layout_constraintVertical_bias="0.0"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            >
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!--스크롤 창에 있는 메시지-->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="fill_horizontal"
+        android:text="메세지가 비어 있습니다!"
+        android:textColor="#ff000000"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+
+</RelativeLayout>

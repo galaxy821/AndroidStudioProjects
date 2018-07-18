@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_image_01"
+        android:textColor="#ffffffff"
+        android:text="Small"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_image_01"
+        android:textColor="#ffffffff"
+        android:text="MediumMediumMedium"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_image_01"
+        android:textColor="#ffffffff"
+        android:text="LongLongLongLongLongLongLongLongLong"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_image_02"
+        android:textColor="#ffffffff"
+        android:text="Small"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_image_02"
+        android:textColor="#ffffffff"
+        android:text="MediumMediumMedium"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@drawable/button_image_02"
+        android:textColor="#ffffffff"
+        android:text="LongLongLongLongLongLongLongLongLong"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+
+</LinearLayout>

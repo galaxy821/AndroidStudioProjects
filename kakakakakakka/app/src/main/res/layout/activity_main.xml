@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <!-- // Toolbar layout for actionbar -->
+            <android.support.v7.widget.Toolbar
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                android:id="@+id/toolbar"
+                android:elevation="1dp"
+                android:background="@color/colorPrimaryDark">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/titleText" android:text="타이틀"
+                    android:textAppearance="@style/Base.TextAppearance.Widget.AppCompat.Toolbar.Title"/>
+            </android.support.v7.widget.Toolbar>
+    <!-- // Tab buttons -->
+            <android.support.design.widget.TabLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/tabs"
+                android:elevation="1dp"
+                android:background="@android:color/background_light"
+                app:tabSelectedTextColor="@color/colorAccent"
+                app:tabTextColor="@color/colorPrimary"
+                app:tabGravity="fill"
+                app:tabMode="fixed"/>
+        </android.support.design.widget.AppBarLayout>
+        <FrameLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/container"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"> </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

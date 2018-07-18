@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.dingdong.team10.study_20180714_chapter8_2"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

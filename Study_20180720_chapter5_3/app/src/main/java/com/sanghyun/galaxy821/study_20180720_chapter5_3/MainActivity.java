@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -148,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+     //=====================데이터베이트================================================================================//
+
     private void createDatabase() { //데이터베이스 생성
 
         try {
@@ -210,9 +216,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //=================================================================================================================//
+
+    //=====================이미지불러오기==============================================================================//
+
+    private void insertImageView(String filePath){
+
+        File file = new File(filePath);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        try{
+            InputStream in = new FileInputStream(filePath);
+            BitmapFactory.decodeStream(in, null, options);
+            in.close();
+            in = null;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+/*
+        if(width > reqWidth){
+            int widthRatio = Math.round((float) width / (float) reqWidth);
+        }*/
+    }
+
 }
-
-
         /*
         adapter.addItem(new ListView_item("소녀시대", "010-1000-1000", 20, R.drawable.singer));
         adapter.addItem(new ListView_item("여자친구", "010-2000-2000", 19, R.drawable.singer2));

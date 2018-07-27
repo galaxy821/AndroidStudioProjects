@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class Mainfragment extends Fragment {
@@ -41,8 +41,12 @@ public class Mainfragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //setRetainInstance(true);
+    }
+    FragmentTransaction addToBackStack(String name){
 
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +64,7 @@ public class Mainfragment extends Fragment {
         createTable(); //데이블 생성
         if(addressList!=null){
             selectData();
-            Toast.makeText(getActivity(), "데이터 조회 완료", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "데이터 조회 완료", Toast.LENGTH_LONG).show();
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -196,7 +200,7 @@ public class Mainfragment extends Fragment {
 
         try {
             addressList = getActivity().openOrCreateDatabase("addressList.db", Activity.MODE_PRIVATE, null);
-            Toast.makeText(getActivity(), "데이터베이스 생성", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "데이터베이스 생성", Toast.LENGTH_LONG).show();
         } catch(Exception ex) {
             ex.printStackTrace();
         }
@@ -206,7 +210,7 @@ public class Mainfragment extends Fragment {
         if(addressList != null){
 
             addressList.execSQL("create table if not exists " + "addressList" + "(" + " _id integer PRIMARY KEY autoincrement, " + " name text, "+" mobile text, " + " age integer, " + " image integer);" );
-            Toast.makeText(getActivity(), "테이블 생성", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "테이블 생성", Toast.LENGTH_LONG).show();
         }else{
             Log.d("error","database open fail!");
         }
@@ -220,7 +224,7 @@ public class Mainfragment extends Fragment {
         Object[] params = {name, mobile, age, image};
 
         addressList.execSQL(sql, params);
-        Toast.makeText(getActivity(), "데이터 추가", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), "데이터 추가", Toast.LENGTH_LONG).show();
         //}else{
         // }
     }
@@ -244,7 +248,7 @@ public class Mainfragment extends Fragment {
                 listView.setAdapter(adapter);
             }
             cursor.close();
-            Toast.makeText(getActivity(), "데이터 조회", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "데이터 조회", Toast.LENGTH_LONG).show();
         }
     }
 

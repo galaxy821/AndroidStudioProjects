@@ -41,11 +41,11 @@ public class ImageProvider extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab21_2);
+        //setContentView(R.layout.activity_lab21_2);
 
-        contactBtn=(Button)findViewById(R.id.lab2_contacts);
-        galleryBtn=(Button)findViewById(R.id.lab2_gallery);
-        mainContent=(LinearLayout)findViewById(R.id.lab2_content);
+        //contactBtn=(Button)findViewById(R.id.lab2_contacts);
+        //galleryBtn=(Button)findViewById(R.id.lab2_gallery);
+        //mainContent=(LinearLayout)findViewById(R.id.lab2_content);
 
         contactBtn.setOnClickListener(this);
         galleryBtn.setOnClickListener(this);

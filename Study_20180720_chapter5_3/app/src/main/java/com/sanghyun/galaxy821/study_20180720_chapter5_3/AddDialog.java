@@ -10,11 +10,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class AddDialog extends Dialog {
 
     Button button;
+    Button buttonImage;
+
     EditText editTextName;
     EditText editTextMobile;
     EditText editTextAge;
@@ -28,10 +28,12 @@ public class AddDialog extends Dialog {
     LinearLayout dialogbox;
 
     private View.OnClickListener AddClickListener;
+    private View.OnClickListener ImageClickListener;
 
-    public AddDialog(Context context, View.OnClickListener AddClickListener) {  // 내가 만든 커스텀 다이얼로그 생성자
+    public AddDialog(Context context, View.OnClickListener AddClickListener, View.OnClickListener ImageClickListener) {  // 내가 만든 커스텀 다이얼로그 생성자
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.AddClickListener = AddClickListener;
+        this.ImageClickListener = ImageClickListener;
     }
 
     @Override
@@ -54,6 +56,9 @@ public class AddDialog extends Dialog {
 
         button =(Button) findViewById(R.id.button_add);
         button.setOnClickListener(AddClickListener);
+
+        buttonImage = (Button) findViewById(R.id.button_image);
+        buttonImage.setOnClickListener(ImageClickListener);
 
         editTextName = (EditText) findViewById(R.id.nameeditText);
         editTextMobile = (EditText) findViewById(R.id.mobileeditText);

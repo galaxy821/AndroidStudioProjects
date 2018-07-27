@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,44 +16,52 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class Mainfragment extends Fragment {
 
-    //int clicked = 0;
+    int clicked = 0;
     Button button;
     ListView listView;
-    //ListAdapter adapter;
-    //AddDialog dialog;
-    //SelectDialog dialogWindow;
+    ListAdapter adapter;
+    AddDialog dialog;
+    SelectDialog dialogWindow;
 
-    //Button deleteButton;
+    Button deleteButton;
 
-    //Intent intent;
+    Intent intent;
 
-    //SQLiteDatabase addressList=null;
+    SQLiteDatabase addressList=null;
 
-    //ExecuteFunction exe = new ExecuteFunction();
+    ExecuteFunction exe = new ExecuteFunction();
 
-    //public ArrayList<ListView_item> items = new ArrayList<ListView_item>();
+    public ArrayList<ListView_item> items = new ArrayList<ListView_item>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        setContentView(R.layout.mainlayout);
 
-        /*
-        button = (Button) findViewById(R.id.addbutton);
+    }
 
-        listView = (ListView) findViewById(R.id.listView);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_main, container, false);
+
+        createDatabase(); //데이터베이스 생성
+        createTable(); //데이블 생성
+        if(addressList!=null){
+            selectData();
+            //Toast.makeText(getApplicationContext(), "데이터 조회", Toast.LENGTH_LONG).show();
+        }
+
+        button = (Button) view.findViewById(R.id.addbutton);
+
+        listView = (ListView) view.findViewById(R.id.listView);
 
         adapter = new ListAdapter();
 
-        intent = new Intent(MainActivity.this, NewActivity.class);
+        intent = new Intent(getActivity(), NewActivity.class);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,23 +85,59 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog = new AddDialog(MainActivity.this, addbuttonListener, ImageClickListener);
+                dialog = new AddDialog(getActivity(), addbuttonListener, ImageClickListener);
                 dialog.setCancelable(true);
                 dialog.getWindow().setGravity(Gravity.CENTER);
                 dialog.show();
             }
         });
 
-        deleteButton = (Button)  findViewById(R.id.deletebutton);
+        deleteButton = (Button) view.findViewById(R.id.deletebutton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clicked = 1;
             }
-        });*/
+        });
+
+
+        return view;
     }
 
-    /*
+    class ListAdapter extends BaseAdapter { //커스텀리스트뷰 어뎁터
+
+        public void addItem(ListView_item item){
+            items.add(item);
+        }
+
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return items.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            ListView_layout view = new ListView_layout(getActivity());
+            ListView_item item = items.get(position);
+            view.setName(item.getName());
+            view.setMoblie(item.getMobile());
+            view.setAge(item.getAge());
+            view.setImageView(item.getResid());
+
+            return view;
+        }
+    }
+
     private  View.OnClickListener addbuttonListener = new View.OnClickListener() {
 
         @Override
@@ -107,9 +151,9 @@ public class MainActivity extends AppCompatActivity {
                 adapter.addItem(new ListView_item(editname, editmobile, editage, image));
                 //Toast.makeText(getApplicationContext(), "데이터입력", Toast.LENGTH_LONG).show();
                 listView.setAdapter(adapter);
-                insertData(editname, editmobile, editage, image);
+                ///////////////////////////////////////////////////////////////////insertData(editname, editmobile, editage, image);
             }else{
-                Toast.makeText(getApplicationContext(), "잘못된 입력 값 입니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "잘못된 입력 값 입니다.", Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -117,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener ImageClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            dialogWindow = new SelectDialog(MainActivity.this, galleryButtonListener, cameraButtonListener, cancelButtonListener);
+            dialogWindow = new SelectDialog(getActivity(), galleryButtonListener, cameraButtonListener, cancelButtonListener);
             dialogWindow.setCancelable(true);
             dialogWindow.getWindow().setGravity(Gravity.CENTER);
             dialogWindow.show();
@@ -143,49 +187,14 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             dialogWindow.dismiss();
         }
-    };*/
+    };
 
-    /*
-    class ListAdapter extends BaseAdapter{ //커스텀리스트뷰 어뎁터
+    //=====================데이터베이트================================================================================//
 
-        public void addItem(ListView_item item){
-            items.add(item);
-        }
-
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return items.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup viewGroup) {
-            ListView_layout view = new ListView_layout(getApplicationContext());
-            ListView_item item = items.get(position);
-            view.setName(item.getName());
-            view.setMoblie(item.getMobile());
-            view.setAge(item.getAge());
-            view.setImageView(item.getResid());
-
-            return view;
-        }
-    }*/
-
-     //=====================데이터베이트================================================================================//
-/*
     private void createDatabase() { //데이터베이스 생성
 
         try {
-            addressList = openOrCreateDatabase("addressList.db", Activity.MODE_PRIVATE, null);
+            addressList = getActivity().openOrCreateDatabase("addressList.db", Activity.MODE_PRIVATE, null);
             //Toast.makeText(getApplicationContext(), "데이터베이스 생성", Toast.LENGTH_LONG).show();
         } catch(Exception ex) {
             ex.printStackTrace();
@@ -205,14 +214,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void insertData(String name, String mobile, int age, int image){ //데이터 삽입
 
-       // if(addressList != null){
-            String sql ="insert into addressList(name, mobile, age, image) values(?, ?, ?, ?)";
-            Object[] params = {name, mobile, age, image};
+        // if(addressList != null){
+        String sql ="insert into addressList(name, mobile, age, image) values(?, ?, ?, ?)";
+        Object[] params = {name, mobile, age, image};
 
-            addressList.execSQL(sql, params);
-            //Toast.makeText(getApplicationContext(), "데이터 추가", Toast.LENGTH_LONG).show();
+        addressList.execSQL(sql, params);
+        //Toast.makeText(getApplicationContext(), "데이터 추가", Toast.LENGTH_LONG).show();
         //}else{
-       // }
+        // }
     }
 
     public void selectData(){ //데이터 조회
@@ -243,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("error","database open fail!");
         }
     }
-*/
-    //=================================================================================================================//
 
+    //=================================================================================================================//
 }

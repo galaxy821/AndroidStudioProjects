@@ -113,7 +113,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="47~51 사이 입력해주세요"
+                android:hint="2~6 사이 입력해주세요"
                 android:inputType="number" />
         </LinearLayout>
 

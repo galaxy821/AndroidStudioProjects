@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
+import android.support.design.widget.TabItem;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,13 +18,18 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
+    Mainfragment fragment2;
 
     //int clicked = 0;
     Button button;
@@ -46,6 +54,33 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.mainlayout);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayShowTitleEnabled(false);
+
+        fragment2 = new Mainfragment();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment2).commit();
+        Log.d("SINGER1", "singer id ="+R.drawable.singer);
+        Log.d("SINGER2", "singer id ="+R.drawable.singer2);
+        Log.d("SINGER3", "singer id ="+R.drawable.singer3);
+        Log.d("SINGER4", "singer id ="+R.drawable.singer4);
+        Log.d("SINGER5", "singer id ="+R.drawable.singer5);
+
+        //TableLayout tabs = (TableLayout) findViewById(R.id.tabs);
+        TabItem item2 = (TabItem) findViewById(R.id.button_address);
+        TabItem item1 = (TabItem) findViewById(R.id.button_dial);
+        TabItem item3 = (TabItem) findViewById(R.id.button_memory);
+        /*
+        item2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+*/
         /*
         button = (Button) findViewById(R.id.addbutton);
 
